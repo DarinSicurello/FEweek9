@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- my CSS -->
+    <title>Card Game</title>
+</head>
+
+<body>
+    <!-- Header -->
+<h2>My Card Game</h2>
+<!-- My Button --> 
+
+<button onclick="dealGame()">Deal Cards</button>
+<!-- Player 1 Container --> 
+
+ <div class="player-cards" id="player1-container">
+  <h2>Player 1</h2>
+  <div class="cards" id="player1-cards"></div>
+</div>
+
+<!-- Player 2 Container -->
+<div class="player-cards" id="player2-container">
+  <h2>Player 2</h2>
+  <div class="cards" id="player2-cards"></div>
+</div>
+<!-- v2 Result Container -->
+<h2>SCORE:</h2>
+<h3 class="round-score" id="score-result"></h3>
+<script src="script.js"></script> <!-- My javaScript -->   
+</body>
+</html>

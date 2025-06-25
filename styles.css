@@ -1,0 +1,17 @@
+body {
+      font-family: Arial, sans-serif;
+    }
+    .playerCards {
+      margin: 20px 0;
+    }
+    .round-score {
+      margin: 20px 0;
+    }
+    .card {
+      display: inline-block;
+      margin: 5px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f8f8f8;
+    }
