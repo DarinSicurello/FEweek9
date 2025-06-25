@@ -70,6 +70,7 @@ function createDeck() {
   }
   return deck;
 }
+
 // Establishing Card Values Using SPlit and Extract rank and get value
 
 function getCardValue(card) {
@@ -87,6 +88,28 @@ function compareCards(card1, card2) {
   return "Tie!";
 }
 
+// v2 Adding Total Score Points values to the Players Cards
+
+function getTotalScore(cards) {
+  let total = 0;
+  for (let card of cards) {
+    total += getCardValue(card);
+  }
+  return total;
+}
+
+function compareTotalScores(playerCards1, playerCards2) {
+  const val1 = getTotalScore(playerCards1);
+  const val2 = getTotalScore(playerCards2);
+
+  if (val1 > val2) {
+    return `Player 1 => ${val1} total vs. Player 2 => ${val2} — Player 1 Wins!`;
+  }
+  if (val2 > val1) {
+    return `Player 1 => ${val1} total vs. Player 2 => ${val2} — Player 2 Wins!`;
+  }
+  return `Player 1 => ${val1} vs. Player 2 => ${val2} — Tie game!`;
+}
 
 // Deal 26 cards (52 / 2) to each player
 function dealCards(deck) {
@@ -110,16 +133,6 @@ function shuffleDeck(deck) {
   }
 }
 
-// Main Game with deck + shuffle + deal
-function dealGame() {
-  let deck = createDeck();  
-  shuffleDeck(deck);        
-  const hands = dealCards(deck); 
-
-  console.log("Player 1", hands.playerCards1);
-  console.log("Player 2", hands.playerCards2);
-}
-
 // Display Cards and Create Card Container  VIA DOM (fix Null error with if)
 
 function displayCards(containerId, cards) {
@@ -139,7 +152,7 @@ function displayCards(containerId, cards) {
   });
 } // <-- closing displayCards
 
-// v2 Need to create a functionn for the dispaly score container 
+// v2 Need to create a function for the display score container 
 
 function displayScoreResult(text) {
   const scoreContainer = document.getElementById("score-result");
@@ -147,9 +160,8 @@ function displayScoreResult(text) {
     console.error('Element with id "score-result" not found.');
     return;
   }
-  scoreContainer.textContent = text;
+  scoreContainer.innerHTML = text;
 }
-
 
 // v2 Deal game fucntion..merging Players 1 * Players 2
 
@@ -158,11 +170,12 @@ function dealGame() {
   shuffleDeck(deck);
   const { playerCards1, playerCards2 } = dealCards(deck);
 
-  // v2 Chanaged the console.log to display score function 
-  const result = compareCards(playerCards1[0], playerCards2[0]);
-  displayScoreResult(result);
-
-  // Call game function to deal cards
   displayCards("player1-cards", playerCards1);
   displayCards("player2-cards", playerCards2);
+
+  const roundResult = compareCards(playerCards1[0], playerCards2[0]);
+  const totalResult = compareTotalScores(playerCards1, playerCards2);
+
+  const finalResultText = `${roundResult}<br>${totalResult}`;
+  displayScoreResult(finalResultText);
 }
